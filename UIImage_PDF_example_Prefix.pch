@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'UIImage+PDF example' target in the 'UIImage+PDF example' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
