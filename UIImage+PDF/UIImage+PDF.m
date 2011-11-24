@@ -19,4 +19,16 @@
 	return [ pdfView image ];
 }
 
+
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width
+{
+    CGRect mediaRect = [ PDFView mediaRect:resourceName ];
+    CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
+    
+    CGSize size = CGSizeMake( width, ceilf( width / aspectRatio ));
+    
+    return [ UIImage imageWithPDFNamed:resourceName atSize:size ];
+}
+
 @end

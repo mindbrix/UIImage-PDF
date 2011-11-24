@@ -33,16 +33,28 @@
 }
 
 
--(NSURL *)resourceURL
++(CGRect) mediaRect:(NSString *)resourceName
 {
-	if( self.resourceName )
+    CGRect rect = CGRectNull;
+    
+    if( resourceName )
 	{
-		return [ NSURL fileURLWithPath:[[ NSBundle mainBundle ] pathForResource:self.resourceName ofType:nil ]];
+		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) [ PDFView resourceURL: resourceName ]);
+		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
+		
+		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
+		
+		CGPDFDocumentRelease( pdf );
 	}
-	else
-	{
-		return nil;
-	}
+    
+    return rect;
+}
+
+
+
++(NSURL *)resourceURL:(NSString *)resourceName
+{
+    return ( resourceName ) ? [ NSURL fileURLWithPath:[[ NSBundle mainBundle ] pathForResource:resourceName ofType:nil ]] : nil;
 }
 
 
@@ -53,7 +65,7 @@
 - (void)drawRect:(CGRect)rect 
 {
     // Drawing code.
-	if( self.resourceURL )
+	if( self.resourceName )
 	{
 		/* 
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
@@ -67,7 +79,7 @@
 		CGContextScaleCTM( ctx, 1, -1 );
 		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
 		
-		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) self.resourceURL );
+        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) [ PDFView resourceURL: self.resourceName ]);
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
 		
 		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
