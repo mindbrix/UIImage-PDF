@@ -35,6 +35,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+    
+    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf"  ]];
+    imageView.center = self.view.center;
+    [ self.view addSubview:imageView ];
+    [ imageView release ];
+    
+    
 	/* Draw a growing line of buttons to demonstate the scaling
 	 */
 	float kInset = 4;
@@ -57,12 +64,15 @@
 		
 		/* Set the button image from the PDF asset.
 		 */
-		[ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ] forState:UIControlStateNormal ];
+        [ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ] forState:UIControlStateNormal ];
+        
+        //[ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atHeight:imageSize.height ] forState:UIControlStateNormal ];
+        //[ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atWidth:imageSize.width ] forState:UIControlStateNormal ];
 		
 		[ self.view addSubview:yingYangButton ];
 		
 		buttonY += buttonWidth + kSpacing;
-	}		
+	}
 }
 
 

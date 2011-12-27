@@ -14,5 +14,7 @@
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width;
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height;
++(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName;
 
 @end

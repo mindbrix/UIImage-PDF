@@ -10,6 +10,7 @@
 
 @implementation  UIImage( PDF )
 
+
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size
 {
 	PDFView *pdfView = [[[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ] autorelease ];
@@ -18,7 +19,6 @@
 	
 	return [ pdfView image ];
 }
-
 
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width
@@ -30,5 +30,25 @@
     
     return [ UIImage imageWithPDFNamed:resourceName atSize:size ];
 }
+
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height
+{
+    CGRect mediaRect = [ PDFView mediaRect:resourceName ];
+    CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
+    
+    CGSize size = CGSizeMake( ceilf( height * aspectRatio ), height );
+    
+    return [ UIImage imageWithPDFNamed:resourceName atSize:size ];
+}
+
+
++(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName
+{
+    CGRect mediaRect = [ PDFView mediaRect:resourceName ];
+    
+    return [ UIImage imageWithPDFNamed:resourceName atSize:mediaRect.size ];
+}
+
 
 @end
