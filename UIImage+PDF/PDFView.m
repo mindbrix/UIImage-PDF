@@ -11,6 +11,7 @@
 @implementation PDFView
 
 @synthesize resourceName = m_resourceName;
+@synthesize resourceURL = m_resourceURL;
 
 
 - (id)initWithFrame:(CGRect)frame 
@@ -29,17 +30,31 @@
 {
 	m_resourceName = resourceName;
 	
-	[ self setNeedsDisplay ];
+    self.resourceURL = [ PDFView resourceURLForName: self.resourceName ];
+}
+
+
+-(void)setResourceURL:(NSURL *)resourceURL
+{
+    m_resourceURL = resourceURL;
+    
+    [ self setNeedsDisplay ];
 }
 
 
 +(CGRect) mediaRect:(NSString *)resourceName
 {
+    return [ PDFView mediaRectForURL:[ PDFView resourceURLForName: resourceName ]];
+}
+
+
++(CGRect) mediaRectForURL:(NSString *)resourceURL
+{
     CGRect rect = CGRectNull;
     
-    if( resourceName )
+    if( resourceURL )
 	{
-		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) [ PDFView resourceURL: resourceName ]);
+		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) resourceURL );
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
 		
 		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
@@ -51,8 +66,7 @@
 }
 
 
-
-+(NSURL *)resourceURL:(NSString *)resourceName
++(NSURL *)resourceURLForName:(NSString *)resourceName
 {
     return ( resourceName ) ? [ NSURL fileURLWithPath:[[ NSBundle mainBundle ] pathForResource:resourceName ofType:nil ]] : nil;
 }
@@ -65,7 +79,8 @@
 - (void)drawRect:(CGRect)rect 
 {
     // Drawing code.
-	if( self.resourceName )
+    if( self.resourceURL )
+	//if( self.resourceName )
 	{
 		/* 
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
@@ -79,7 +94,7 @@
 		CGContextScaleCTM( ctx, 1, -1 );
 		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
 		
-        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) [ PDFView resourceURL: self.resourceName ]);
+        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) self.resourceURL );
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
 		
 		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );

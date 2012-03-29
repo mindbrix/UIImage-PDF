@@ -14,8 +14,10 @@
 }
 
 @property( nonatomic, assign ) NSString *resourceName;
+@property( nonatomic, assign ) NSURL *resourceURL;
 
 +(CGRect) mediaRect:(NSString *)resourceName;
-+(NSURL *)resourceURL:(NSString *)resourceName;
++(CGRect) mediaRectForURL:(NSURL *)resourceURL;
++(NSURL *)resourceURLForName:(NSString *)resourceName;
   
 @end
