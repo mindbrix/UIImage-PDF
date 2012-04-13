@@ -14,7 +14,7 @@
 {
 	if( [ self.layer respondsToSelector:@selector(setShouldRasterize:)])
 	{
-		UIGraphicsBeginImageContextWithOptions( self.bounds.size, NO, [UIScreen mainScreen].scale );
+		UIGraphicsBeginImageContextWithOptions( self.bounds.size, NO, self.contentScaleFactor );
 	}
 	else
 	{

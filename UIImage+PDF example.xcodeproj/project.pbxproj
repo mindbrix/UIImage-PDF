@@ -19,6 +19,8 @@
 		A6685B1E1449C642006A3A42 /* UIImage+PDF.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1A1449C642006A3A42 /* UIImage+PDF.m */; };
 		A6685B1F1449C642006A3A42 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1C1449C642006A3A42 /* UIView+Image.m */; };
 		A6685B3B1449CC1C006A3A42 /* YingYang.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A6685B3A1449CC1C006A3A42 /* YingYang.pdf */; };
+		A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */; };
+		A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,9 @@
 		A6685B1B1449C642006A3A42 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
 		A6685B1C1449C642006A3A42 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
 		A6685B3A1449CC1C006A3A42 /* YingYang.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = YingYang.pdf; sourceTree = "<group>"; };
+		A6CF4D5D15384D12000AA6BB /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +89,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				A6CF4D6015384D66000AA6BB /* iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -123,6 +129,8 @@
 		A6685B161449C642006A3A42 /* UIImage+PDF */ = {
 			isa = PBXGroup;
 			children = (
+				A6CF4D5D15384D12000AA6BB /* NSString+MD5.h */,
+				A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */,
 				A6685B171449C642006A3A42 /* PDFView.h */,
 				A6685B181449C642006A3A42 /* PDFView.m */,
 				A6685B191449C642006A3A42 /* UIImage+PDF.h */,
@@ -131,6 +139,14 @@
 				A6685B1C1449C642006A3A42 /* UIView+Image.m */,
 			);
 			path = "UIImage+PDF";
+			sourceTree = "<group>";
+		};
+		A6CF4D6015384D66000AA6BB /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +201,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* UIImage_PDF_exampleViewController.xib in Resources */,
 				A6685B3B1449CC1C006A3A42 /* YingYang.pdf in Resources */,
+				A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +218,7 @@
 				A6685B1D1449C642006A3A42 /* PDFView.m in Sources */,
 				A6685B1E1449C642006A3A42 /* UIImage+PDF.m in Sources */,
 				A6685B1F1449C642006A3A42 /* UIView+Image.m in Sources */,
+				A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +235,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UIImage_PDF_example_Prefix.pch;
 				INFOPLIST_FILE = "UIImage_PDF_example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "UIImage+PDF example";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -229,7 +249,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UIImage_PDF_example_Prefix.pch;
 				INFOPLIST_FILE = "UIImage_PDF_example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "UIImage+PDF example";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -23,6 +23,11 @@ The `atWidth:` and `atHeight:` methods are particularly useful as they preserve 
 An example project is included in this repository. The important code is in `viewDidLoad:` in `UIImage_PDF_exampleViewController.m`.
 
 
+Cacheing layer
+--------------
+`UIImage+PDF` now transparently caches all rendered PDFs in `<Application_Home>/Library/Caches/__PDF_CACHE__`. This substantially improves application latency with large PDFs, especially on the new iPad. To disable cacheing, comment out `#define UIIMAGE_PDF_CACHEING    1` in `UIImage+PDF.h`.
+
+
 PDF file size
 -------------
 

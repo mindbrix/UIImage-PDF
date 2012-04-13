@@ -8,6 +8,10 @@
 #import <UIKit/UIKit.h>
 #import "UIView+Image.h"
 #import "PDFView.h"
+#import "NSString+MD5.h"
+
+
+#define UIIMAGE_PDF_CACHEING    1
 
 
 @interface UIImage( PDF )

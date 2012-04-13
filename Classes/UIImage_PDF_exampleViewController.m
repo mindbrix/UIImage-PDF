@@ -66,10 +66,7 @@
 		 */
         [ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ] forState:UIControlStateNormal ];
         
-        //[ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atHeight:imageSize.height ] forState:UIControlStateNormal ];
-        //[ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atWidth:imageSize.width ] forState:UIControlStateNormal ];
-		
-		[ self.view addSubview:yingYangButton ];
+        [ self.view addSubview:yingYangButton ];
 		
 		buttonY += buttonWidth + kSpacing;
 	}
