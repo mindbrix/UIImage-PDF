@@ -16,6 +16,10 @@
 
 @interface UIImage( PDF )
 
++(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
++(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
+
+
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height;

@@ -11,6 +11,34 @@
 @implementation  UIImage( PDF )
 
 
+#pragma mark - Convenience methods
+
++(UIImage *) imageOrPDFNamed:(NSString *)resourceName
+{
+    if([[ resourceName pathExtension ] isEqualToString: @"pdf" ])
+    {
+        return [ UIImage originalSizeImageWithPDFNamed:resourceName ];
+    }
+    else
+    {
+        return [ UIImage imageNamed:resourceName ];
+    }
+}
+
+
++(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path
+{
+    if([[ path pathExtension ] isEqualToString: @"pdf" ])
+    {
+        return [ UIImage originalSizeImageWithPDFURL:[ NSURL fileURLWithPath:path ]];
+    }
+    else
+    {
+        return [ UIImage imageWithContentsOfFile:path ];
+    }
+}
+
+
 #pragma mark - Cacheing
 
 +(NSString *)cacheFilenameForURL:(NSURL *)resourceURL atSize:(CGSize)size atScaleFactor:(CGFloat)scaleFactor
