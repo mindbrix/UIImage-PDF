@@ -10,6 +10,7 @@
 
 @implementation PDFView
 
+@synthesize page = m_page;
 @synthesize resourceName = m_resourceName;
 @synthesize resourceURL = m_resourceURL;
 
@@ -21,6 +22,7 @@
     if (self) 
 	{
         // Initialization code.
+        m_page = 1;
     }
     return self;
 }
@@ -48,14 +50,20 @@
 }
 
 
-+(CGRect) mediaRectForURL:(NSString *)resourceURL
++(CGRect) mediaRectForURL:(NSURL *)resourceURL
+{
+    return [ self mediaRectForURL:resourceURL atPage:1 ];
+}
+
+
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(int)page
 {
     CGRect rect = CGRectNull;
     
     if( resourceURL )
 	{
 		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) resourceURL );
-		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
+		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
 		
 		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
 		
@@ -63,6 +71,23 @@
 	}
     
     return rect;
+}
+
+
++(int) pageCountForURL:(NSURL *)resourceURL
+{
+    int pageCount = 1;
+    
+    if( resourceURL )
+	{
+		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) resourceURL );
+		
+		pageCount = CGPDFDocumentGetNumberOfPages( pdf );
+		
+		CGPDFDocumentRelease( pdf );
+	}
+    
+    return pageCount;
 }
 
 
@@ -80,7 +105,6 @@
 {
     // Drawing code.
     if( self.resourceURL )
-	//if( self.resourceName )
 	{
 		/* 
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
@@ -95,7 +119,7 @@
 		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
 		
         CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) self.resourceURL );
-		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, 1 );
+		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, self.page );
 		
 		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
 		CGContextScaleCTM( ctx, rect.size.width / mediaRect.size.width, rect.size.height / mediaRect.size.height );

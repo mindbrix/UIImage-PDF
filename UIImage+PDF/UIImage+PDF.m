@@ -41,7 +41,7 @@
 
 #pragma mark - Cacheing
 
-+(NSString *)cacheFilenameForURL:(NSURL *)resourceURL atSize:(CGSize)size atScaleFactor:(CGFloat)scaleFactor
++(NSString *)cacheFilenameForURL:(NSURL *)resourceURL atSize:(CGSize)size atScaleFactor:(CGFloat)scaleFactor atPage:(int)page
 {
     NSString *cacheFilename = nil;
     
@@ -57,7 +57,7 @@
     
     //NSLog( @"fileAttributes: %@", fileAttributes );
     
-    NSString *cacheRoot = [ NSString stringWithFormat:@"%@ - %@ - %@ - %@", [ filePath lastPathComponent ], [ fileAttributes objectForKey:NSFileSize ], [ fileAttributes objectForKey:NSFileModificationDate ], NSStringFromCGSize(CGSizeMake( size.width * scaleFactor, size.height * scaleFactor ))];
+    NSString *cacheRoot = [ NSString stringWithFormat:@"%@ - %@ - %@ - %@ - %d", [ filePath lastPathComponent ], [ fileAttributes objectForKey:NSFileSize ], [ fileAttributes objectForKey:NSFileModificationDate ], NSStringFromCGSize(CGSizeMake( size.width * scaleFactor, size.height * scaleFactor )), page ];
     
     //NSLog( @"cacheRoot: %@", cacheRoot );
     
@@ -86,11 +86,22 @@
 
 #pragma mark - Resource name
 
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size atPage:(int)page
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atSize:size atPage:page ];
+}
+
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size
 {
     return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atSize:size ];
 }
 
+
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width atPage:(int)page
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atWidth:width atPage:page ];
+}
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width
 {
@@ -98,11 +109,23 @@
 }
 
 
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height atPage:(int)page
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atHeight:height atPage:page ];
+}
+
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height
 {
     return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atHeight:height ];
 }
 
+
+
++(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(int)page
+{
+    return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atPage:page ];
+}
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName
 {
@@ -113,14 +136,13 @@
 
 #pragma mark - Resource URLs
 
-+(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size
++(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page
 {
     UIImage *pdfImage = nil;
     
     PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
     
-    //NSFileManager *fileManager = [ NSFileManager defaultManager ];
-    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:pdfView.contentScaleFactor ];
+    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:pdfView.contentScaleFactor atPage:page ];
     
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
     {
@@ -133,6 +155,7 @@
         //NSLog( @"Cache miss" );
     
         pdfView.backgroundColor = [ UIColor clearColor ];
+        pdfView.page = page;
         pdfView.resourceURL = URL;
         
         pdfImage = [ pdfView image ];
@@ -148,34 +171,58 @@
 	return pdfImage;
 }
 
++(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size
+{
+    return [ self imageWithPDFURL:URL atSize:size atPage:1 ];
+}
 
-+(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width
+
+
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(int)page
 {
     CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( width, ceilf( width / aspectRatio ));
     
-    return [ UIImage imageWithPDFURL:URL atSize:size ];
+    return [ UIImage imageWithPDFURL:URL atSize:size atPage:page ];
+}
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width
+{
+    return [ UIImage imageWithPDFURL:URL atWidth:width atPage:1 ];
 }
 
 
-+(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height atPage:(int)page
 {
     CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( ceilf( height * aspectRatio ), height );
     
-    return [ UIImage imageWithPDFURL:URL atSize:size ];
+    return [ UIImage imageWithPDFURL:URL atSize:size atPage:page ];
+}
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height
+{
+    return [ UIImage imageWithPDFURL:URL atHeight:height atPage:1 ];
 }
 
 
-+(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL
+
++(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL atPage:(int)page
 {
     CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
     
-    return [ UIImage imageWithPDFURL:URL atSize:mediaRect.size ];
+    return [ UIImage imageWithPDFURL:URL atSize:mediaRect.size atPage:page ];
+}
+
++(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL
+{
+    return [ UIImage originalSizeImageWithPDFURL:URL atPage:1 ];
 }
 
 

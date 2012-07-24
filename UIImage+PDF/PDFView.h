@@ -13,11 +13,14 @@
 
 }
 
+@property( nonatomic, assign ) int page;
 @property( nonatomic, assign ) NSString *resourceName;
 @property( nonatomic, assign ) NSURL *resourceURL;
 
 +(CGRect) mediaRect:(NSString *)resourceName;
 +(CGRect) mediaRectForURL:(NSURL *)resourceURL;
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(int)page;
++(int) pageCountForURL:(NSURL *)resourceURL;
 +(NSURL *)resourceURLForName:(NSString *)resourceName;
   
 @end
