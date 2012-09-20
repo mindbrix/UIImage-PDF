@@ -120,6 +120,15 @@
     return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atHeight:height ];
 }
 
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size atPage:(int)page
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size atPage:page ];
+}
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size ];
+}
 
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(int)page
@@ -177,6 +186,25 @@
 }
 
 
++(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size atPage:(int)page
+{
+    // Get dimensions
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
+    
+    // Calculate scale factor
+    CGFloat scaleFactor = MAX(mediaRect.size.width / size.width, mediaRect.size.height / size.height);
+    
+    // Create new size
+    CGSize newSize = CGSizeMake( ceilf( mediaRect.size.width / scaleFactor ), ceilf( mediaRect.size.height / scaleFactor ));
+    
+    // Return image
+    return [ UIImage imageWithPDFURL:URL atSize:newSize atPage:page ];
+}
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size
+{
+    return [ UIImage imageWithPDFURL:URL fitSize:size atPage:1 ];
+}
 
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(int)page
