@@ -29,6 +29,9 @@
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height atPage:(int)page;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height;
 
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size atPage:(int)page;
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size;
+
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(int)page;
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName;
 
@@ -43,6 +46,9 @@
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height;
+
++(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size atPage:(int)page;
++(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size;
 
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL atPage:(int)page;
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL;

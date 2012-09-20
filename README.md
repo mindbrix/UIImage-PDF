@@ -14,11 +14,12 @@ Add the sources files in the `UIImage+PDF` sub folder to your project. Use the f
 Then simply call one of the `UIImage` class methods as shown here:
 
 	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:CGSizeMake( 40, 40 ) ];
+	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" fitSize:CGSizeMake( 90, 50 ) ];
 	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atWidth:60 ];
 	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atHeight:90 ];
 	UIImage *img = [ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf" ];
 
-The `atWidth:` and `atHeight:` methods are particularly useful as they preserve the aspect ratio of the source PDF.
+The `fitSize:`, `atWidth:` and `atHeight:` methods are particularly useful as they preserve the aspect ratio of the source PDF.
 
 An example project is included in this repository. The important code is in `viewDidLoad:` in `UIImage_PDF_exampleViewController.m`.
 
