@@ -93,7 +93,15 @@
 
 +(NSURL *)resourceURLForName:(NSString *)resourceName
 {
-    return ( resourceName ) ? [ NSURL fileURLWithPath:[[ NSBundle mainBundle ] pathForResource:resourceName ofType:nil ]] : nil;
+    NSString *path = [[ NSBundle mainBundle ] pathForResource:resourceName ofType:nil ];
+    if( path == nil )
+    {
+        return nil;
+    }
+    else
+    {
+        return ( resourceName ) ? [ NSURL fileURLWithPath:path] : nil;
+    }
 }
 
 
