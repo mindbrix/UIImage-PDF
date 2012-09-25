@@ -188,8 +188,13 @@
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size atPage:(int)page
 {
+    if ( URL == nil )
+    {
+        return nil;
+    }
+    
     // Get dimensions
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     
     // Calculate scale factor
     CGFloat scaleFactor = MAX(mediaRect.size.width / size.width, mediaRect.size.height / size.height);
@@ -209,7 +214,12 @@
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(int)page
 {
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
+    if ( URL == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( width, ceilf( width / aspectRatio ));
@@ -226,7 +236,12 @@
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height atPage:(int)page
 {
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
+    if ( URL == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( ceilf( height * aspectRatio ), height );
@@ -243,7 +258,12 @@
 
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL atPage:(int)page
 {
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL ];
+    if ( URL == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     
     return [ UIImage imageWithPDFURL:URL atSize:mediaRect.size atPage:page ];
 }
