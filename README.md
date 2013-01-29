@@ -42,7 +42,7 @@ The amazing devs at [Panic](http://www.panic.com/) have now released a PDF shrin
 ARC-safe memory management
 --------------------------
 
-`UIImage+PDF` can be used with or without ARC.  The as_retain(X) and similar macros from https://github.com/kstenerud/ARCSafe-MemManagement compile to the appropriate code under the current memory management scheme. 
+`UIImage+PDF` can be used with or without ARC.  The as_retain(X) and similar macros from [ARC-Safe Memory Management](https://github.com/kstenerud/ARCSafe-MemManagement) compile to appropriate code under the current memory management scheme. 
 
 
 Licence
@@ -54,7 +54,7 @@ Copyright 2012 Nigel Timothy Barber - [@mindbrix](http://twitter.com/mindbrix). 
 
 Permission is given to use this source code file without charge in any project, commercial or otherwise, entirely at your risk, with the condition that any redistribution (in part or whole) of source code must retain this copyright and permission notice. Attribution in compiled projects is appreciated but not required.
 
-ARCSafe_MemMgmt.h from https://github.com/kstenerud/ARCSafe-MemManagement is under a similar licence. See that file for details.
+ARCSafe_MemMgmt.h from [ARC-Safe Memory Management](https://github.com/kstenerud/ARCSafe-MemManagement) is under a similar licence. See that file for details.
 
 
 Further Reading
