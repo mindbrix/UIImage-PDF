@@ -6,7 +6,7 @@
 //
 
 #import "PDFView.h"
-
+#import "ARCSafe_MemMgmt.h"
 
 @implementation PDFView
 
@@ -62,7 +62,7 @@
     
     if( resourceURL )
 	{
-		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) resourceURL );
+		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (as_bridge CFURLRef) resourceURL );
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
 		
 		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
@@ -80,7 +80,7 @@
     
     if( resourceURL )
 	{
-		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) resourceURL );
+		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (as_bridge CFURLRef) resourceURL );
 		
 		pageCount = CGPDFDocumentGetNumberOfPages( pdf );
 		
@@ -126,7 +126,7 @@
 		CGContextScaleCTM( ctx, 1, -1 );
 		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
 		
-        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (CFURLRef) self.resourceURL );
+        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (as_bridge CFURLRef) self.resourceURL );
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, self.page );
 		
 		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
@@ -141,7 +141,7 @@
 
 - (void)dealloc 
 {
-    [super dealloc];
+    as_superdealloc();
 }
 
 
