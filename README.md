@@ -39,6 +39,12 @@ Other vector graphics editors which natively use the OSX Quartz renderer, such a
 The amazing devs at [Panic](http://www.panic.com/) have now released a PDF shrinking utility, [ShrinkIt](http://www.panic.com/blog/2010/02/shrinkit-1-0/), which should take a lot of the pain out of a vector asset workflow.
 
 
+ARC-safe memory management
+--------------------------
+
+`UIImage+PDF` can be used with or without ARC.  The as_retain(X) and similar macros from https://github.com/kstenerud/ARCSafe-MemManagement compile to the appropriate code under the current memory management scheme. 
+
+
 Licence
 -------
 
@@ -47,6 +53,8 @@ This licence is derived from one used by [Matt Gallagher](http://projectswithlov
 Copyright 2012 Nigel Timothy Barber - [@mindbrix](http://twitter.com/mindbrix). All rights reserved.
 
 Permission is given to use this source code file without charge in any project, commercial or otherwise, entirely at your risk, with the condition that any redistribution (in part or whole) of source code must retain this copyright and permission notice. Attribution in compiled projects is appreciated but not required.
+
+ARCSafe_MemMgmt.h from https://github.com/kstenerud/ARCSafe-MemManagement is under a similar licence. See that file for details.
 
 
 Further Reading
