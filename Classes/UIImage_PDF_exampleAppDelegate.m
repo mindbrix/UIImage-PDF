@@ -8,6 +8,7 @@
 
 #import "UIImage_PDF_exampleAppDelegate.h"
 #import "UIImage_PDF_exampleViewController.h"
+#import "ARCSafe_MemMgmt.h"
 
 @implementation UIImage_PDF_exampleAppDelegate
 
@@ -79,9 +80,9 @@
 
 
 - (void)dealloc {
-    [viewController release];
-    [window release];
-    [super dealloc];
+    as_release(viewController);
+    as_release(window);
+    as_superdealloc();
 }
 
 

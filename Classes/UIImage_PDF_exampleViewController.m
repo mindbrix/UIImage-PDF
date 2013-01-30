@@ -7,6 +7,7 @@
 //
 
 #import "UIImage_PDF_exampleViewController.h"
+#import "ARCSafe_MemMgmt.h"
 
 @implementation UIImage_PDF_exampleViewController
 
@@ -39,7 +40,7 @@
     UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf"  ]];
     imageView.center = self.view.center;
     [ self.view addSubview:imageView ];
-    [ imageView release ];
+    as_release(imageView);
     
     
 	/* Draw a growing line of buttons to demonstate the scaling
@@ -96,7 +97,7 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+    as_superdealloc();
 }
 
 @end

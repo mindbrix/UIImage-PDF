@@ -6,7 +6,7 @@
 //
 
 #import "UIImage+PDF.h"
-
+#import "ARCSafe_MemMgmt.h"
 
 @implementation  UIImage( PDF )
 
@@ -175,7 +175,7 @@
         }
     }
     
-    [ pdfView release ];
+    as_release(pdfView);
     
 	return pdfImage;
 }
