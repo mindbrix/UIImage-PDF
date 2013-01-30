@@ -175,7 +175,6 @@
         }
     }
     
-    [ pdfView release ];
     
 	return pdfImage;
 }

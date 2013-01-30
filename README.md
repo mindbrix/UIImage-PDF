@@ -24,6 +24,12 @@ The `fitSize:`, `atWidth:` and `atHeight:` methods are particularly useful as th
 An example project is included in this repository. The important code is in `viewDidLoad:` in `UIImage_PDF_exampleViewController.m`.
 
 
+ARC
+---
+
+_**If your project doesn't use ARC**: you must add the `-fobjc-arc` compiler flag to `NSString+MD5.m`, `PDFView.m`, `UIImage+PDF.m` and `UIView+Image.m` in Target Settings ==> Build Phases ==> Compile Sources._
+
+
 Cacheing layer
 --------------
 `UIImage+PDF` now transparently caches all rendered PDFs in `<Application_Home>/Library/Caches/__PDF_CACHE__`. This substantially improves application latency with large PDFs, especially on the new iPad. To disable cacheing, comment out `#define UIIMAGE_PDF_CACHEING    1` in `UIImage+PDF.h`.

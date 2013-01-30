@@ -14,8 +14,8 @@
 }
 
 @property( nonatomic, assign ) int page;
-@property( nonatomic, assign ) NSString *resourceName;
-@property( nonatomic, assign ) NSURL *resourceURL;
+@property( nonatomic, strong ) NSString *resourceName;
+@property( nonatomic, strong ) NSURL *resourceURL;
 
 +(CGRect) mediaRect:(NSString *)resourceName;
 +(CGRect) mediaRectForURL:(NSURL *)resourceURL;
