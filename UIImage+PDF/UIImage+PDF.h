@@ -50,6 +50,9 @@
 +(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size;
 
++(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page;
+
++(UIImage *) originalSizeImageWithPDFData:(NSData *)data;
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL atPage:(int)page;
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL;
 

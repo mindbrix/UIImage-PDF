@@ -141,9 +141,28 @@
     return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ]];
 }
 
++(UIImage *) originalSizeImageWithPDFData:(NSData *)data
+{
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:1 ];
 
+    return [ UIImage imageWithPDFData:data atSize:mediaRect.size atPage:1 ];
+}
 
 #pragma mark - Resource URLs
+
++(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page
+{
+    UIImage *pdfImage = nil;
+
+    PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
+
+    pdfView.backgroundColor = [ UIColor clearColor ];
+    pdfView.page = page;
+    pdfView.resourceData = data;
+
+    pdfImage = [ pdfView image ];
+	return pdfImage;
+}
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page
 {
