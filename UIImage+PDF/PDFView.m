@@ -86,16 +86,16 @@
     CGRect rect = CGRectNull;
 
     if( data )
-	{
+    {
         CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
         CGPDFDocumentRef pdf = CGPDFDocumentCreateWithProvider(provider);
-		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
+        CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
 
-		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
+        rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
 
-		CGPDFDocumentRelease( pdf );
-	}
-
+        CGPDFDocumentRelease( pdf );
+    }
+    
     return rect;
 }
 
@@ -137,9 +137,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect 
 {
-    // Drawing code.
-
-    if (self.resourceData || self.resourceURL) {
+    if (!self.resourceURL && !self.resourceData) {
+        return;
+    } else {
         /*
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
 		 */
@@ -171,7 +171,6 @@
 		CGPDFDocumentRelease( pdf );
 
     }
- 
 }
 
 

@@ -152,16 +152,13 @@
 
 +(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page
 {
-    UIImage *pdfImage = nil;
-
     PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
 
     pdfView.backgroundColor = [ UIColor clearColor ];
     pdfView.page = page;
     pdfView.resourceData = data;
 
-    pdfImage = [ pdfView image ];
-	return pdfImage;
+    return [ pdfView image ];
 }
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page
