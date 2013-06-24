@@ -35,13 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    
-    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf"  ]];
-    imageView.center = self.view.center;
-    [ self.view addSubview:imageView ];
-    [ imageView release ];
-    
-    
+    [ self addOriginalSizePDFFileImageViewAtYPosition:10.0f ];
+    [ self addOriginalSizePDFDataImageViewAtYPosition:self.view.bounds.size.height - 10.0f ];
+
+   
 	/* Draw a growing line of buttons to demonstate the scaling
 	 */
 	float kInset = 4;
@@ -97,6 +94,26 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+#pragma mark - Internal Methods 
+
+- (void)addOriginalSizePDFFileImageViewAtYPosition:(CGFloat)yPosition {
+    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf"  ]];
+    imageView.center = CGPointMake( self.view.bounds.size.width / 2.0f ,
+                                   imageView.bounds.size.height / 2.0f + yPosition );
+    [ self.view addSubview:imageView ];
+    [ imageView release ];
+}
+
+- (void)addOriginalSizePDFDataImageViewAtYPosition:(CGFloat)yPosition {
+    NSString *pdfFilePath = [[ NSBundle mainBundle ] pathForResource:@"YingYang.pdf" ofType:nil ];
+    NSData *pdfData = [NSData dataWithContentsOfFile:pdfFilePath];
+    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFData:pdfData ]];
+    imageView.center = CGPointMake( self.view.bounds.size.width / 2.0f ,
+                                    yPosition - imageView.bounds.size.height / 2.0f );
+    [ self.view addSubview:imageView ];
+    [ imageView release ];
 }
 
 @end
