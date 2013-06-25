@@ -137,9 +137,8 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect 
 {
-    if (!self.resourceURL && !self.resourceData) {
-        return;
-    } else {
+    if ( self.resourceURL || self.resourceData )
+    {
         /*
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
 		 */
@@ -153,14 +152,17 @@
 		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
 
         CGPDFDocumentRef pdf;
+        
         if( self.resourceURL )
         {
             pdf = CGPDFDocumentCreateWithURL( (__bridge CFURLRef) self.resourceURL );
-        } else if(self.resourceData)
+        }
+        else
         {
             CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)self.resourceData);
             pdf = CGPDFDocumentCreateWithProvider(provider);
         }
+        
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, self.page );
 
 		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );

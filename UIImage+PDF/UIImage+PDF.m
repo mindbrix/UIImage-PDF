@@ -41,6 +41,41 @@
 
 #pragma mark - Cacheing
 
++(NSString *)cacheFilenameForData:(NSData *)resourceData atSize:(CGSize)size atScaleFactor:(CGFloat)scaleFactor atPage:(int)page
+{
+    NSString *cacheFilename = nil;
+    
+#ifdef UIIMAGE_PDF_CACHEING
+    
+    NSFileManager *fileManager = [ NSFileManager defaultManager ];
+    
+   
+    NSString *cacheRoot = [ NSString stringWithFormat:@"%@ - %@ - %d", [ resourceData MD5 ], NSStringFromCGSize(CGSizeMake( size.width * scaleFactor, size.height * scaleFactor )), page ];
+    
+    //NSLog( @"cacheRoot: %@", cacheRoot );
+    
+    NSString *MD5 = [ cacheRoot MD5 ];
+    
+    //NSLog( @"MD5: %@", MD5 );
+    
+    NSString *cachesDirectory = [ NSSearchPathForDirectoriesInDomains( NSCachesDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ];
+    
+    NSString *cacheDirectory = [ NSString stringWithFormat:@"%@/__PDF_CACHE__", cachesDirectory ];
+    
+    //NSLog( @"cacheDirectory: %@", cacheDirectory );
+    
+    [ fileManager createDirectoryAtPath:cacheDirectory withIntermediateDirectories:YES attributes:nil error:NULL ];
+    
+    cacheFilename = [ NSString stringWithFormat:@"%@/%@.png", cacheDirectory, MD5 ];
+    
+    //NSLog( @"cacheFilename: %@", cacheFilename );
+    
+#endif
+    
+    return cacheFilename;
+}
+
+
 +(NSString *)cacheFilenameForURL:(NSURL *)resourceURL atSize:(CGSize)size atScaleFactor:(CGFloat)scaleFactor atPage:(int)page
 {
     NSString *cacheFilename = nil;
@@ -152,14 +187,38 @@
 
 +(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page
 {
+    UIImage *pdfImage = nil;
+    
     PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
 
-    pdfView.backgroundColor = [ UIColor clearColor ];
-    pdfView.page = page;
-    pdfView.resourceData = data;
+    NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:pdfView.contentScaleFactor atPage:page ];
+    
+    if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
+    {
+        NSLog( @"Cache hit" );
+        
+        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:pdfView.contentScaleFactor orientation:UIImageOrientationUp ];
+    }
+    else
+    {
+        NSLog( @"Cache miss" );
+        
+        pdfView.backgroundColor = [ UIColor clearColor ];
+        pdfView.page = page;
+        pdfView.resourceData = data;
 
-    return [ pdfView image ];
+        pdfImage =  [ pdfView image ];
+        
+        if( cacheFilename )
+        {
+            [ UIImagePNGRepresentation( pdfImage ) writeToFile:cacheFilename atomically:NO ];
+        }
+    }
+    
+    return pdfImage;
 }
+
+
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page
 {
