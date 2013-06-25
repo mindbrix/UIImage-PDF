@@ -18,8 +18,15 @@ Then simply call one of the `UIImage` class methods as shown here:
 	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atWidth:60 ];
 	UIImage *img = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atHeight:90 ];
 	UIImage *img = [ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf" ];
+	
+	UIImage *img = [ UIImage imageWithPDFURL:url atSize:CGSizeMake( 60, 60 ) atPage:1 ];
+	
+	UIImage *img = [ UIImage imageWithPDFData:data atSize:CGSizeMake( 60, 60 ) atPage:1 ];
+
 
 The `fitSize:`, `atWidth:` and `atHeight:` methods are particularly useful as they preserve the aspect ratio of the source PDF.
+
+For a full API list consult the header file.
 
 An example project is included in this repository. The important code is in `viewDidLoad:` in `UIImage_PDF_exampleViewController.m`.
 
