@@ -131,48 +131,54 @@
 }
 
 
++(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(int)page
+{
+    if ( resourceURL || resourceData )
+    {
+        /*
+		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
+		 */
+        CGContextGetCTM( ctx );
+		CGContextScaleCTM( ctx, 1, -1 );
+		CGContextTranslateCTM( ctx, 0, -size.height );
+        
+        CGPDFDocumentRef pdf;
+        
+        if( resourceURL )
+        {
+            pdf = CGPDFDocumentCreateWithURL( (__bridge CFURLRef) resourceURL );
+        }
+        else
+        {
+            CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)resourceData);
+            pdf = CGPDFDocumentCreateWithProvider(provider);
+        }
+        
+		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
+        
+		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
+		CGContextScaleCTM( ctx, size.width / mediaRect.size.width, size.height / mediaRect.size.height );
+		CGContextTranslateCTM( ctx, -mediaRect.origin.x, -mediaRect.origin.y );
+        
+		CGContextDrawPDFPage( ctx, page1 );
+		CGPDFDocumentRelease( pdf );
+        
+    }
+}
+
+
 
 /**/
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect 
 {
-    if ( self.resourceURL || self.resourceData )
-    {
-        /*
-		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
-		 */
-		CGContextRef ctx = UIGraphicsGetCurrentContext();
-
-		[ self.backgroundColor set ];
-		CGContextFillRect( ctx, rect );
-
-		CGContextGetCTM( ctx );
-		CGContextScaleCTM( ctx, 1, -1 );
-		CGContextTranslateCTM( ctx, 0, -self.bounds.size.height );
-
-        CGPDFDocumentRef pdf;
-        
-        if( self.resourceURL )
-        {
-            pdf = CGPDFDocumentCreateWithURL( (__bridge CFURLRef) self.resourceURL );
-        }
-        else
-        {
-            CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)self.resourceData);
-            pdf = CGPDFDocumentCreateWithProvider(provider);
-        }
-        
-		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, self.page );
-
-		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
-		CGContextScaleCTM( ctx, rect.size.width / mediaRect.size.width, rect.size.height / mediaRect.size.height );
-		CGContextTranslateCTM( ctx, -mediaRect.origin.x, -mediaRect.origin.y );
-
-		CGContextDrawPDFPage( ctx, page1 );
-		CGPDFDocumentRelease( pdf );
-
-    }
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    [ self.backgroundColor set ];
+    CGContextFillRect( ctx, rect );
+    
+    [[ self class ] renderIntoContext:ctx url:self.resourceURL data:self.resourceData size:rect.size page:self.page ];
 }
 
 

@@ -23,5 +23,6 @@
 +(CGRect) mediaRectForData:(NSData *)data atPage:(int)page;
 +(int) pageCountForURL:(NSURL *)resourceURL;
 +(NSURL *)resourceURLForName:(NSString *)resourceName;
-  
++(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(int)page;
+
 @end

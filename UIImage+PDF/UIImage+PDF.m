@@ -189,25 +189,25 @@
 {
     UIImage *pdfImage = nil;
     
-    PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
+    //PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
 
-    NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:pdfView.contentScaleFactor atPage:page ];
+    NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
     {
-        NSLog( @"Cache hit" );
+       //NSLog( @"Cache hit" );
         
-        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:pdfView.contentScaleFactor orientation:UIImageOrientationUp ];
+        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[ UIScreen mainScreen ].scale orientation:UIImageOrientationUp ];
     }
     else
     {
-        NSLog( @"Cache miss" );
+       //NSLog( @"Cache miss" );
         
-        pdfView.backgroundColor = [ UIColor clearColor ];
-        pdfView.page = page;
-        pdfView.resourceData = data;
-
-        pdfImage =  [ pdfView image ];
+        UIGraphicsBeginImageContextWithOptions( size, NO, [ UIScreen mainScreen ].scale );
+        
+        [ PDFView renderIntoContext:UIGraphicsGetCurrentContext() url:nil data:data size:size page:page ];
+        pdfImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
         if( cacheFilename )
         {
@@ -224,25 +224,23 @@
 {
     UIImage *pdfImage = nil;
     
-    PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
-    
-    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:pdfView.contentScaleFactor atPage:page ];
+    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
     {
         //NSLog( @"Cache hit" );
         
-        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:pdfView.contentScaleFactor orientation:UIImageOrientationUp ];
+        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[ UIScreen mainScreen ].scale orientation:UIImageOrientationUp ];
     }
     else 
     {
         //NSLog( @"Cache miss" );
     
-        pdfView.backgroundColor = [ UIColor clearColor ];
-        pdfView.page = page;
-        pdfView.resourceURL = URL;
+        UIGraphicsBeginImageContextWithOptions( size, NO, [ UIScreen mainScreen ].scale );
         
-        pdfImage = [ pdfView image ];
+        [ PDFView renderIntoContext:UIGraphicsGetCurrentContext() url:URL data:nil size:size page:page ];
+        pdfImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
         if( cacheFilename )
         {
