@@ -247,20 +247,18 @@ static BOOL _shouldCache = NO;
 {
     UIImage *pdfImage = nil;
     
+    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
+    
     
     /**
      * Check in Memeory cached image before checking file system
      */
-    NSString *key;
-    
-    if (_shouldCache) {
-        key = [NSString stringWithFormat:@"%@:%d%@x%.0f", URL.path, page, NSStringFromCGSize(size), [ UIScreen mainScreen ].scale];
-        
-        pdfImage = [_imagesCache objectForKey:key];
+    if (_shouldCache)
+    {
+        pdfImage = [_imagesCache objectForKey:cacheFilename];
         if (pdfImage) return pdfImage;
     }
     
-    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
     {
@@ -287,8 +285,9 @@ static BOOL _shouldCache = NO;
      * Cache image to in memory if active
      */
     
-    if (pdfImage && _shouldCache) {
-        [_imagesCache setObject:pdfImage forKey:key];
+    if (pdfImage && cacheFilename && _shouldCache)
+    {
+        [_imagesCache setObject:pdfImage forKey:cacheFilename];
     }
     
 	return pdfImage;
