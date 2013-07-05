@@ -17,6 +17,8 @@
 
 @interface UIImage( PDF )
 
++ (void) setInMemoryActive:(BOOL)isActive;
+
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
 +(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
 
