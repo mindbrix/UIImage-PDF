@@ -20,14 +20,14 @@ static BOOL _shouldCache = NO;
  @abstract
  Set the caching in memory of images on and off
  
- @param isActive to activate the caching
+ @param shouldCache to activate the caching
  
- @discussion this method sets up an NSCache for the images end the flag responsible to check them when reqeusted
+ @discussion this method sets up an NSCache for the images and the flag responsible to check them when reqeusted
  
  */
 
-+ (void) setInMemoryActive:(BOOL)isActive {
-    _shouldCache = isActive;
++ (void)setShouldCacheInMemory:(BOOL)shouldCache {
+    _shouldCache = shouldCache;
     if (_shouldCache && !_imagesCache) {
         _imagesCache = [[NSCache alloc] init];
     }

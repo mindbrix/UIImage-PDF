@@ -75,41 +75,7 @@
 	}
     
     
-if (YES) {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:@"Test Memory FootPrint" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(checkMemoryAction:) forControlEvents:UIControlEventTouchUpInside];
-    [btn setFrame:CGRectMake(self.view.bounds.size.width - 200, 10, 190, 30)];
-    [self.view addSubview:btn];
 }
-    
-    
-}
-
-/*!
- @abstract
- Actiont to check the momory footprint using in memory cache for rendered images
- 
- @param sender, The button that triggered the action.
- 
- @discussion This Memory test needs to be performed with allocation Instruments to see how the footprint changes while requesting the same image over and over again
- 
- */
-
-- (void)checkMemoryAction:(id)sender {
-    [UIImage setInMemoryActive:YES]; // set YES or NO for the purpose of tests
-    
-    self.collection = [NSMutableArray array];
-    
-    for (int i = 0 ; i < 1000; i++) {
-        NSString *name = @"YingYang.pdf";
-        
-        UIImage *img = [UIImage imageWithPDFNamed:name atSize:CGSizeMake(500, 500)];
-        [self.collection addObject:img];
-        img = nil;
-    }
-}
-
 
 /*
 // Override to allow orientations other than the default portrait orientation.
