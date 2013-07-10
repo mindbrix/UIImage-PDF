@@ -11,6 +11,29 @@
 @implementation  UIImage( PDF )
 
 
+#pragma mark - Control cache
+
+static NSCache *_imagesCache;
+static BOOL _shouldCache = NO;
+
+/*!
+ @abstract
+ Set the caching in memory of images on and off
+ 
+ @param shouldCache to activate the caching
+ 
+ @discussion this method sets up an NSCache for the images and the flag responsible to check them when reqeusted
+ 
+ */
+
++ (void)setShouldCacheInMemory:(BOOL)shouldCache {
+    _shouldCache = shouldCache;
+    if (_shouldCache && !_imagesCache) {
+        _imagesCache = [[NSCache alloc] init];
+    }
+}
+
+
 #pragma mark - Convenience methods
 
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName
@@ -226,6 +249,17 @@
     
     NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
+    
+    /**
+     * Check in Memeory cached image before checking file system
+     */
+    if (_shouldCache)
+    {
+        pdfImage = [_imagesCache objectForKey:cacheFilename];
+        if (pdfImage) return pdfImage;
+    }
+    
+    
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
     {
         //NSLog( @"Cache hit" );
@@ -247,7 +281,14 @@
             [ UIImagePNGRepresentation( pdfImage ) writeToFile:cacheFilename atomically:NO ];
         }
     }
+    /**
+     * Cache image to in memory if active
+     */
     
+    if (pdfImage && cacheFilename && _shouldCache)
+    {
+        [_imagesCache setObject:pdfImage forKey:cacheFilename];
+    }
     
 	return pdfImage;
 }

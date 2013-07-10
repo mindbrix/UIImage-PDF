@@ -8,6 +8,12 @@
 
 #import "UIImage_PDF_exampleViewController.h"
 
+@interface UIImage_PDF_exampleViewController ()
+
+@property (nonatomic, strong) NSMutableArray *collection;
+
+@end
+
 @implementation UIImage_PDF_exampleViewController
 
 
@@ -67,9 +73,9 @@
 		
 		buttonY += buttonWidth + kSpacing;
 	}
+    
+    
 }
-
-
 
 /*
 // Override to allow orientations other than the default portrait orientation.
