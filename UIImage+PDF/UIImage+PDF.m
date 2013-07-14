@@ -26,10 +26,13 @@ static BOOL _shouldCache = NO;
  
  */
 
-+ (void)setShouldCacheInMemory:(BOOL)shouldCache {
++(void)setShouldCacheInMemory:(BOOL)shouldCache
+{
     _shouldCache = shouldCache;
-    if (_shouldCache && !_imagesCache) {
-        _imagesCache = [[NSCache alloc] init];
+    
+    if( _shouldCache && !_imagesCache )
+    {
+        _imagesCache = [[ NSCache alloc ] init ];
     }
 }
 
@@ -212,8 +215,6 @@ static BOOL _shouldCache = NO;
 {
     UIImage *pdfImage = nil;
     
-    //PDFView *pdfView = [[ PDFView alloc ] initWithFrame:CGRectMake( 0, 0, size.width, size.height ) ];
-
     NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
     if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
@@ -251,7 +252,7 @@ static BOOL _shouldCache = NO;
     
     
     /**
-     * Check in Memeory cached image before checking file system
+     * Check in Memory cached image before checking file system
      */
     if (_shouldCache)
     {

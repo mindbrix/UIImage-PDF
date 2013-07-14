@@ -55,11 +55,21 @@ Memory Cacheing
 PDF file size
 -------------
 
-By default Adobe Illustrator saves exported PDFs very inefficiently. For best results, export in EPS format, load this into Preview and then save as a PDF. The included example file `YingYang.pdf` shrunk to 10% of its original size with this workflow.
+By default Adobe Illustrator saves exported PDFs very inefficiently. For best results, select File -> Save a Copy, select PDF format and then uncheck all the general options. Once you are ready to ship your app, run all your PDF assets through ShrinkIt (see below).
 
-Other vector graphics editors which natively use the OSX Quartz renderer, such as Sketch, will create much more compact PDFs.
+Other vector graphics editors which natively use the OSX Quartz renderer, such as [Sketch](http://www.bohemiancoding.com/sketch/), will create much more compact PDFs.
 
 The amazing devs at [Panic](http://www.panic.com/) have now released a PDF shrinking utility, [ShrinkIt](http://www.panic.com/blog/2010/02/shrinkit-1-0/), which should take a lot of the pain out of a vector asset workflow.
+
+
+Apps using UIImage+PDF
+----------------------
+
+Here is a partial list of the apps using this category. If you want to add your app to this list, please submit a pull request.
+
+* [Vectoria](http://vectoria.co.uk)
+* [Tiltoria](https://itunes.apple.com/gb/app/tiltoria/id460391221?mt=8)
+* [Video Player+](https://itunes.apple.com/gb/app/video-player+/id575932926?mt=8)
 
 
 Licence
