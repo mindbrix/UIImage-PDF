@@ -89,6 +89,7 @@
     {
         CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
         CGPDFDocumentRef pdf = CGPDFDocumentCreateWithProvider(provider);
+        CGDataProviderRelease(provider);
         CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
 
         rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
@@ -152,6 +153,7 @@
         {
             CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)resourceData);
             pdf = CGPDFDocumentCreateWithProvider(provider);
+            CGDataProviderRelease(provider);
         }
         
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
