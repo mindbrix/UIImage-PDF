@@ -70,6 +70,7 @@ Here is a partial list of the apps using this category. If you want to add your 
 * [Vectoria](http://vectoria.co.uk)
 * [Tiltoria](https://itunes.apple.com/gb/app/tiltoria/id460391221?mt=8)
 * [Video Player+](https://itunes.apple.com/gb/app/video-player+/id575932926?mt=8)
+* [UltiScore](http://johnstewart.com/ios/ultiscore)
 
 
 Licence
