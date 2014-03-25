@@ -39,13 +39,11 @@
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName;
 
 
-
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size;
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width;
-
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atHeight:(CGFloat)height;
@@ -53,7 +51,19 @@
 +(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size atPage:(int)page;
 +(UIImage *) imageWithPDFURL:(NSURL *)URL fitSize:(CGSize)size;
 
+
++(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size;
 +(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page;
+
++(UIImage *) imageWithPDFData:(NSData *)data atWidth:(CGFloat)width;
++(UIImage *) imageWithPDFData:(NSData *)data atWidth:(CGFloat)width atPage:(int)page;
+
++(UIImage *) imageWithPDFData:(NSData *)data atHeight:(CGFloat)height;
++(UIImage *) imageWithPDFData:(NSData *)data atHeight:(CGFloat)height atPage:(int)page;
+
++(UIImage *) imageWithPDFData:(NSData *)data fitSize:(CGSize)size;
++(UIImage *) imageWithPDFData:(NSData *)data fitSize:(CGSize)size atPage:(int)page;
+
 
 +(UIImage *) originalSizeImageWithPDFData:(NSData *)data;
 +(UIImage *) originalSizeImageWithPDFURL:(NSURL *)URL atPage:(int)page;
