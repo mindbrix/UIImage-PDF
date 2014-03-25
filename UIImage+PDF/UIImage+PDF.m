@@ -202,6 +202,9 @@ static BOOL _shouldCache = NO;
     return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ]];
 }
 
+
+#pragma mark - Resource Data
+
 +(UIImage *) originalSizeImageWithPDFData:(NSData *)data
 {
     CGRect mediaRect = [ PDFView mediaRectForData:data atPage:1 ];
@@ -209,10 +212,78 @@ static BOOL _shouldCache = NO;
     return [ UIImage imageWithPDFData:data atSize:mediaRect.size atPage:1 ];
 }
 
-#pragma mark - Resource URLs
 
-+(UIImage *) imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page
++(UIImage *)imageWithPDFData:(NSData *)data atWidth:(CGFloat)width
 {
+    return [ UIImage imageWithPDFData:data atWidth:width atPage:1 ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data atWidth:(CGFloat)width atPage:(int)page
+{
+    if ( data == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
+    CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
+    CGSize size = CGSizeMake( width, ceilf( width / aspectRatio ));
+    
+    return [ UIImage imageWithPDFData:data atSize:size atPage:page ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data atHeight:(CGFloat)height
+{
+    return [ UIImage imageWithPDFData:data atHeight:height atPage:1 ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data atHeight:(CGFloat)height atPage:(int)page
+{
+    if ( data == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
+    CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
+    CGSize size = CGSizeMake( ceilf( height * aspectRatio ), height );
+    
+    return [ UIImage imageWithPDFData:data atSize:size atPage:page ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data fitSize:(CGSize)size
+{
+    return [ UIImage imageWithPDFData:data fitSize:size atPage:1 ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data fitSize:(CGSize)size atPage:(int)page
+{
+    if ( data == nil )
+    {
+        return nil;
+    }
+    
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
+    CGFloat scaleFactor = MAX( mediaRect.size.width / size.width, mediaRect.size.height / size.height );
+    CGSize newSize = CGSizeMake( ceilf( mediaRect.size.width / scaleFactor ), ceilf( mediaRect.size.height / scaleFactor ));
+    
+    // Return image
+    return [ UIImage imageWithPDFData:data atSize:newSize atPage:page ];
+}
+
+
++(UIImage *)imageWithPDFData:(NSData *)data atSize:(CGSize)size
+{
+    return [ UIImage imageWithPDFData:data atSize:size atPage:1 ];
+}
+
++(UIImage *)imageWithPDFData:(NSData *)data atSize:(CGSize)size atPage:(int)page
+{
+    if ( data == nil )
+    {
+        return nil;
+    }
+    
     UIImage *pdfImage = nil;
     
     NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
@@ -243,6 +314,7 @@ static BOOL _shouldCache = NO;
 }
 
 
+#pragma mark - Resource URLs
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atSize:(CGSize)size atPage:(int)page
 {
