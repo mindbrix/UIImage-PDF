@@ -101,9 +101,9 @@
 }
 
 
-+(int) pageCountForURL:(NSURL *)resourceURL
++(NSInteger) pageCountForURL:(NSURL *)resourceURL
 {
-    int pageCount = 1;
+    NSInteger pageCount = 1;
     
     if( resourceURL )
 	{
