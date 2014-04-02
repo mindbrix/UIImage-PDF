@@ -64,7 +64,7 @@
 }
 
 
-+(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(int)page
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page
 {
     CGRect rect = CGRectNull;
     
@@ -81,7 +81,7 @@
     return rect;
 }
 
-+(CGRect) mediaRectForData:(NSData *)data atPage:(int)page
++(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page
 {
     CGRect rect = CGRectNull;
 
@@ -101,9 +101,9 @@
 }
 
 
-+(NSInteger) pageCountForURL:(NSURL *)resourceURL
++(NSUInteger) pageCountForURL:(NSURL *)resourceURL
 {
-    NSInteger pageCount = 1;
+    NSUInteger pageCount = 1;
     
     if( resourceURL )
 	{
@@ -132,7 +132,7 @@
 }
 
 
-+(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(int)page
++(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page
 {
     if ( resourceURL || resourceData )
     {
