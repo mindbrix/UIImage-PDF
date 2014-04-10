@@ -13,16 +13,16 @@
 
 }
 
-@property( nonatomic, assign ) int page;
+@property( nonatomic, assign ) NSUInteger page;
 @property( nonatomic, strong ) NSString *resourceName;
 @property( nonatomic, strong ) NSURL *resourceURL;
 @property( nonatomic, strong ) NSData *resourceData;
 +(CGRect) mediaRect:(NSString *)resourceName;
 +(CGRect) mediaRectForURL:(NSURL *)resourceURL;
-+(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(int)page;
-+(CGRect) mediaRectForData:(NSData *)data atPage:(int)page;
-+(NSInteger) pageCountForURL:(NSURL *)resourceURL;
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page;
++(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page;
++(NSUInteger) pageCountForURL:(NSURL *)resourceURL;
 +(NSURL *)resourceURLForName:(NSString *)resourceName;
-+(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(int)page;
++(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page;
 
 @end
