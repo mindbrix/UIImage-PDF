@@ -41,40 +41,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    [ self addOriginalSizePDFFileImageViewAtYPosition:10.0f ];
-    [ self addOriginalSizePDFDataImageViewAtYPosition:self.view.bounds.size.height - 10.0f ];
-
-   
-	/* Draw a growing line of buttons to demonstate the scaling
+    /* Draw a growing line of buttons to demonstate the scaling
 	 */
-	float kInset = 4;
-	float kSpacing = 10;
-	float buttonY = kSpacing;
+	CGFloat kSpacing = 10;
+	CGFloat imageY = kSpacing;
 
-	for( float i = 0; i < 8; i++ )
+	for(CGFloat i = 0; i < 8; i++)
 	{
 		/* Always round up coordinates before passing them into UIKit
 		 */
-		float buttonWidth = ceilf( 22 * sqrtf( i + 1 ));
-		
-		CGSize buttonSize = CGSizeMake( buttonWidth, buttonWidth );
-		UIButton *yingYangButton = [ UIButton buttonWithType:UIButtonTypeRoundedRect ];
-		yingYangButton.frame = CGRectMake( kSpacing, buttonY, buttonSize.width, buttonSize.height );
-		
-		/* Inset the button image
-		 */
-		CGSize imageSize = CGSizeMake( buttonSize.width - kInset * 2, buttonSize.height - kInset * 2 );
-		
-		/* Set the button image from the PDF asset.
-		 */
-        [ yingYangButton setImage:[ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ] forState:UIControlStateNormal ];
+		CGFloat imageWidth = ceilf( 22 * sqrtf( i + 1 ));
+		CGSize imageSize = CGSizeMake( imageWidth, imageWidth );
+        UIImage *image = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ];
         
-        [ self.view addSubview:yingYangButton ];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, imageY, imageSize.width, imageSize.height)];
+        imageView.image = image;
+		[ self.view addSubview:imageView ];
 		
-		buttonY += buttonWidth + kSpacing;
+		imageY += imageWidth + kSpacing;
 	}
-    
-    
 }
 
 /*
@@ -102,24 +87,5 @@
     [super dealloc];
 }
 
-#pragma mark - Internal Methods 
-
-- (void)addOriginalSizePDFFileImageViewAtYPosition:(CGFloat)yPosition {
-    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFNamed:@"YingYang.pdf"  ]];
-    imageView.center = CGPointMake( self.view.bounds.size.width / 2.0f ,
-                                   imageView.bounds.size.height / 2.0f + yPosition );
-    [ self.view addSubview:imageView ];
-    [ imageView release ];
-}
-
-- (void)addOriginalSizePDFDataImageViewAtYPosition:(CGFloat)yPosition {
-    NSString *pdfFilePath = [[ NSBundle mainBundle ] pathForResource:@"YingYang.pdf" ofType:nil ];
-    NSData *pdfData = [NSData dataWithContentsOfFile:pdfFilePath];
-    UIImageView *imageView = [[ UIImageView alloc ] initWithImage:[ UIImage originalSizeImageWithPDFData:pdfData ]];
-    imageView.center = CGPointMake( self.view.bounds.size.width / 2.0f ,
-                                    yPosition - imageView.bounds.size.height / 2.0f );
-    [ self.view addSubview:imageView ];
-    [ imageView release ];
-}
 
 @end
