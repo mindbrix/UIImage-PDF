@@ -65,6 +65,14 @@ static BOOL _shouldCache = NO;
     }
 }
 
++(NSInteger) imageOrPDFScreenScale {
+    NSInteger screenScaleFactor = 1;
+    if ( [[UIScreen mainScreen] respondsToSelector:@selector(scale)] ) {
+        CGFloat screenScale = [[[UIScreen mainScreen] valueForKey:@"scale"] floatValue];
+        screenScaleFactor = [[NSNumber numberWithFloat:screenScale] integerValue];
+    }
+    return screenScaleFactor;
+}
 
 #pragma mark - Cacheing
 
@@ -262,17 +270,17 @@ static BOOL _shouldCache = NO;
     
     NSString *cacheFilename = [ self cacheFilenameForData:data atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
     
-    if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
+    if( [[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ] && !_shouldCache )
     {
        //NSLog( @"Cache hit" );
         
-        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[ UIScreen mainScreen ].scale orientation:UIImageOrientationUp ];
+        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[UIImage imageOrPDFScreenScale] orientation:UIImageOrientationUp ];
     }
     else
     {
        //NSLog( @"Cache miss" );
         
-        UIGraphicsBeginImageContextWithOptions( size, NO, [ UIScreen mainScreen ].scale );
+        UIGraphicsBeginImageContextWithOptions( size, NO, [UIImage imageOrPDFScreenScale] );
         
         [ PDFView renderIntoContext:UIGraphicsGetCurrentContext() url:nil data:data size:size page:page ];
         pdfImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -294,7 +302,7 @@ static BOOL _shouldCache = NO;
 {
     UIImage *pdfImage = nil;
     
-    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[ UIScreen mainScreen ].scale atPage:page ];
+    NSString *cacheFilename = [ self cacheFilenameForURL:URL atSize:size atScaleFactor:[UIImage imageOrPDFScreenScale] atPage:page ];
     
     
     /**
@@ -307,17 +315,17 @@ static BOOL _shouldCache = NO;
     }
     
     
-    if([[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ])
+    if( [[ NSFileManager defaultManager ] fileExistsAtPath:cacheFilename ] && !_shouldCache )
     {
         //NSLog( @"Cache hit" );
         
-        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[ UIScreen mainScreen ].scale orientation:UIImageOrientationUp ];
+        pdfImage = [ UIImage imageWithCGImage:[[ UIImage imageWithContentsOfFile:cacheFilename ] CGImage ] scale:[UIImage imageOrPDFScreenScale] orientation:UIImageOrientationUp ];
     }
     else 
     {
         //NSLog( @"Cache miss" );
     
-        UIGraphicsBeginImageContextWithOptions( size, NO, [ UIScreen mainScreen ].scale );
+        UIGraphicsBeginImageContextWithOptions( size, NO, [UIImage imageOrPDFScreenScale] );
         
         [ PDFView renderIntoContext:UIGraphicsGetCurrentContext() url:URL data:nil size:size page:page ];
         pdfImage = UIGraphicsGetImageFromCurrentImageContext();

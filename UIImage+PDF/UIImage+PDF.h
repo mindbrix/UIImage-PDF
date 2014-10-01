@@ -21,7 +21,7 @@
 
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
 +(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
-
++(NSInteger) imageOrPDFScreenScale;
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size atPage:(NSUInteger)page;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size;
