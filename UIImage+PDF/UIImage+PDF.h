@@ -12,12 +12,10 @@
 #import "NSString+MD5.h"
 
 
-#define UIIMAGE_PDF_CACHEING    1
-
-
 @interface UIImage( PDF )
 
-+ (void)setShouldCacheInMemory:(BOOL)shouldCache;
++(void)setShouldCacheOnDisk:(BOOL)shouldCache; // Default = YES
++(void)setShouldCacheInMemory:(BOOL)shouldCache; // Default = NO
 
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
 +(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
