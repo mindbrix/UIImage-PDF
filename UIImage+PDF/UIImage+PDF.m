@@ -76,26 +76,14 @@ static BOOL _shouldCache = NO;
     
     NSFileManager *fileManager = [ NSFileManager defaultManager ];
     
-   
     NSString *cacheRoot = [ NSString stringWithFormat:@"%@ - %@ - %lu", [ resourceData MD5 ], NSStringFromCGSize(CGSizeMake( size.width * scaleFactor, size.height * scaleFactor )), (unsigned long)page ];
-    
-    //NSLog( @"cacheRoot: %@", cacheRoot );
-    
     NSString *MD5 = [ cacheRoot MD5 ];
     
-    //NSLog( @"MD5: %@", MD5 );
-    
     NSString *cachesDirectory = [ NSSearchPathForDirectoriesInDomains( NSCachesDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ];
-    
     NSString *cacheDirectory = [ NSString stringWithFormat:@"%@/__PDF_CACHE__", cachesDirectory ];
-    
-    //NSLog( @"cacheDirectory: %@", cacheDirectory );
-    
     [ fileManager createDirectoryAtPath:cacheDirectory withIntermediateDirectories:YES attributes:nil error:NULL ];
     
     cacheFilename = [ NSString stringWithFormat:@"%@/%@.png", cacheDirectory, MD5 ];
-    
-    //NSLog( @"cacheFilename: %@", cacheFilename );
     
 #endif
     
@@ -113,31 +101,16 @@ static BOOL _shouldCache = NO;
     
     NSString *filePath = [ resourceURL path ];
     
-    //NSLog( @"filePath: %@", filePath );
-    
     NSDictionary *fileAttributes = [ fileManager attributesOfItemAtPath:filePath error:NULL ];
     
-    //NSLog( @"fileAttributes: %@", fileAttributes );
-    
     NSString *cacheRoot = [ NSString stringWithFormat:@"%@ - %@ - %@ - %@ - %lu", [ filePath lastPathComponent ], [ fileAttributes objectForKey:NSFileSize ], [ fileAttributes objectForKey:NSFileModificationDate ], NSStringFromCGSize(CGSizeMake( size.width * scaleFactor, size.height * scaleFactor )), (unsigned long)page ];
-    
-    //NSLog( @"cacheRoot: %@", cacheRoot );
-    
     NSString *MD5 = [ cacheRoot MD5 ];
     
-    //NSLog( @"MD5: %@", MD5 );
-    
     NSString *cachesDirectory = [ NSSearchPathForDirectoriesInDomains( NSCachesDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ];
-    
     NSString *cacheDirectory = [ NSString stringWithFormat:@"%@/__PDF_CACHE__", cachesDirectory ];
-    
-    //NSLog( @"cacheDirectory: %@", cacheDirectory );
-    
     [ fileManager createDirectoryAtPath:cacheDirectory withIntermediateDirectories:YES attributes:nil error:NULL ];
     
     cacheFilename = [ NSString stringWithFormat:@"%@/%@.png", cacheDirectory, MD5 ];
-    
-    //NSLog( @"cacheFilename: %@", cacheFilename );
     
 #endif
     
