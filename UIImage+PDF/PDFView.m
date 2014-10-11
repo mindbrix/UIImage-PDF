@@ -139,9 +139,6 @@
         /*
 		 * Reference: http://www.cocoanetics.com/2010/06/rendering-pdf-is-easier-than-you-thought/
 		 */
-        CGContextScaleCTM( ctx, 1, -1 );
-		CGContextTranslateCTM( ctx, 0, -size.height );
-        
         CGPDFDocumentRef pdf;
         
         if( resourceURL )
