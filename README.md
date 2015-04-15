@@ -40,8 +40,10 @@ _**If your project doesn't use ARC**: you must add the `-fobjc-arc` compiler fla
 Disk Cacheing 
 --------------
 
-`UIImage+PDF` now transparently caches all rendered PDFs in `<Application_Home>/Library/Caches/__PDF_CACHE__`. This substantially improves application latency with large PDFs, especially on the new iPad. To disable cacheing, comment out `#define UIIMAGE_PDF_CACHEING    1` in `UIImage+PDF.h`.
+`UIImage+PDF` now transparently caches all rendered PDFs in `<Application_Home>/Library/Caches/__PDF_CACHE__`. This substantially improves application latency with large PDFs, especially on larger devices. To disable disk cacheing, call:
 
+	[ UIImage setShouldCacheOnDisk:NO ];
+	
 
 Memory Cacheing 
 --------------
