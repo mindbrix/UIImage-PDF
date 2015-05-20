@@ -154,9 +154,9 @@
         
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
         
-		CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
-		CGContextScaleCTM( ctx, size.width / mediaRect.size.width, size.height / mediaRect.size.height );
-		CGContextTranslateCTM( ctx, -mediaRect.origin.x, -mediaRect.origin.y );
+        CGRect destRect = CGRectMake(0, 0, size.width, size.height);
+        CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page1, kCGPDFCropBox, destRect, 0, NO);
+        CGContextConcatCTM(ctx, drawingTransform);
         
 		CGContextDrawPDFPage( ctx, page1 );
 		CGPDFDocumentRelease( pdf );
