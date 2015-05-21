@@ -23,8 +23,6 @@
 		A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */; };
 		E969166119DC7713006942BF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E969166019DC7713006942BF /* MainStoryboard.storyboard */; };
-		E9D3AF361B0E068300B9D08B /* QuestionMark.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E9D3AF351B0E068300B9D08B /* QuestionMark.pdf */; };
-		E9D3AF381B0E0A7900B9D08B /* 6000-DRG-01-M-001.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E9D3AF371B0E0A7900B9D08B /* 6000-DRG-01-M-001.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +52,6 @@
 		A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		E969166019DC7713006942BF /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		E9D3AF351B0E068300B9D08B /* QuestionMark.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = QuestionMark.pdf; path = ../../../Desktop/QuestionMark.pdf; sourceTree = "<group>"; };
-		E9D3AF371B0E0A7900B9D08B /* 6000-DRG-01-M-001.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "6000-DRG-01-M-001.pdf"; path = "../../../Downloads/6000-DRG-01-M-001.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +114,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E9D3AF371B0E0A7900B9D08B /* 6000-DRG-01-M-001.pdf */,
-				E9D3AF351B0E068300B9D08B /* QuestionMark.pdf */,
 				A6685B3A1449CC1C006A3A42 /* YingYang.pdf */,
 				2899E5210DE3E06400AC0155 /* UIImage_PDF_exampleViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -219,9 +213,7 @@
 				E969166119DC7713006942BF /* MainStoryboard.storyboard in Resources */,
 				2899E5220DE3E06400AC0155 /* UIImage_PDF_exampleViewController.xib in Resources */,
 				A6685B3B1449CC1C006A3A42 /* YingYang.pdf in Resources */,
-				E9D3AF381B0E0A7900B9D08B /* 6000-DRG-01-M-001.pdf in Resources */,
 				A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */,
-				E9D3AF361B0E068300B9D08B /* QuestionMark.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
