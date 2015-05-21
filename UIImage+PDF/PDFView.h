@@ -19,8 +19,8 @@
 @property( nonatomic, strong ) NSData *resourceData;
 +(CGRect) mediaRect:(NSString *)resourceName;
 +(CGRect) mediaRectForURL:(NSURL *)resourceURL;
-+(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page fitRect:(CGRect)fitRect;
-+(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page fitRect:(CGRect)fitRect;
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page;
++(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page;
 +(NSUInteger) pageCountForURL:(NSURL *)resourceURL;
 +(NSURL *)resourceURLForName:(NSString *)resourceName;
 +(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page preserveAspectRatio:(BOOL)preserveAspectRatio;

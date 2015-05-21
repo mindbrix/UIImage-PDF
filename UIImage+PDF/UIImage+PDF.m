@@ -16,7 +16,7 @@
 
 static NSCache *_imagesCache;
 static BOOL _shouldCache = NO;
-static BOOL _shouldCacheOnDisk = NO;
+static BOOL _shouldCacheOnDisk = YES;
 
 /*!
  @abstract
@@ -176,7 +176,7 @@ static BOOL _shouldCacheOnDisk = NO;
 
 +(UIImage *) originalSizeImageWithPDFData:(NSData *)data
 {
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:1 fitRect:CGRectNull ];
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:1 ];
 
     return [ UIImage imageWithPDFData:data atSize:mediaRect.size atPage:1 ];
 }
@@ -191,7 +191,7 @@ static BOOL _shouldCacheOnDisk = NO;
     if ( data == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page fitRect:CGRectMake(0, 0, 100, 100) ];
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
     
@@ -208,7 +208,7 @@ static BOOL _shouldCacheOnDisk = NO;
     if ( data == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page fitRect:CGRectMake(0, 0, 100, 100)];
+    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
     
@@ -350,7 +350,7 @@ static BOOL _shouldCacheOnDisk = NO;
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(NSUInteger)page
 {
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page fitRect:CGRectMake(0, 0, 100, 100) ];
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
@@ -369,7 +369,7 @@ static BOOL _shouldCacheOnDisk = NO;
     if ( URL == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page fitRect:CGRectMake(0, 0, 100, 100) ];
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
@@ -387,7 +387,7 @@ static BOOL _shouldCacheOnDisk = NO;
     if ( URL == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page fitRect:CGRectNull ];
+    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page];
     
     return [ UIImage imageWithPDFURL:URL atSize:mediaRect.size atPage:page preserveAspectRatio:YES ];
 }
