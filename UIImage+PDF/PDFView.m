@@ -60,28 +60,33 @@
 
 +(CGRect) mediaRectForURL:(NSURL *)resourceURL
 {
-    return [ self mediaRectForURL:resourceURL atPage:1 ];
+    return [ self mediaRectForURL:resourceURL atPage:1 fitRect:CGRectNull ];
 }
 
 
-+(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page
++(CGRect) mediaRectForURL:(NSURL *)resourceURL atPage:(NSUInteger)page fitRect:(CGRect)fitRect
 {
     CGRect rect = CGRectNull;
     
     if( resourceURL )
 	{
 		CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL( (__bridge CFURLRef) resourceURL );
+        
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
-		
 		rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
-		
-		CGPDFDocumentRelease( pdf );
+        
+        if (!CGRectIsNull(fitRect)) {
+            CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page1, kCGPDFCropBox, fitRect, 0, true);
+            rect = CGRectApplyAffineTransform(rect, drawingTransform);
+        }
+        
+        CGPDFDocumentRelease( pdf );
 	}
     
     return rect;
 }
 
-+(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page
++(CGRect) mediaRectForData:(NSData *)data atPage:(NSUInteger)page fitRect:(CGRect)fitRect
 {
     CGRect rect = CGRectNull;
 
@@ -90,10 +95,15 @@
         CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
         CGPDFDocumentRef pdf = CGPDFDocumentCreateWithProvider(provider);
         CGDataProviderRelease(provider);
+        
         CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
-
         rect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
-
+        
+        if (!CGRectIsNull(fitRect)) {
+            CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page1, kCGPDFCropBox, fitRect, 0, true);
+            rect = CGRectApplyAffineTransform(rect, drawingTransform);
+        }
+        
         CGPDFDocumentRelease( pdf );
     }
     
@@ -132,7 +142,7 @@
 }
 
 
-+(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page
++(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page preserveAspectRatio:(BOOL)preserveAspectRatio
 {
     if ( resourceURL || resourceData )
     {
@@ -154,10 +164,10 @@
         
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
         
-        CGRect mediaRect = CGPDFPageGetBoxRect( page1, kCGPDFCropBox );
-        CGContextScaleCTM( ctx, size.width / mediaRect.size.width, size.height / mediaRect.size.height );
-        CGContextTranslateCTM( ctx, -mediaRect.origin.x, -mediaRect.origin.y );
-        
+        CGRect destRect = CGRectMake(0, 0, size.width, size.height);
+        CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page1, kCGPDFCropBox, destRect, 0, preserveAspectRatio);
+        CGContextConcatCTM(ctx, drawingTransform);
+                
 		CGContextDrawPDFPage( ctx, page1 );
 		CGPDFDocumentRelease( pdf );
         
@@ -176,10 +186,8 @@
     [ self.backgroundColor set ];
     CGContextFillRect( ctx, rect );
     
-    [[ self class ] renderIntoContext:ctx url:self.resourceURL data:self.resourceData size:rect.size page:self.page ];
+    [[ self class ] renderIntoContext:ctx url:self.resourceURL data:self.resourceData size:rect.size page:self.page preserveAspectRatio:NO];
 }
-
-
 
 
 @end
