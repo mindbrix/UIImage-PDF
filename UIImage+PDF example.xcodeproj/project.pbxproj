@@ -19,10 +19,10 @@
 		A6685B1D1449C642006A3A42 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B181449C642006A3A42 /* PDFView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6685B1E1449C642006A3A42 /* UIImage+PDF.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1A1449C642006A3A42 /* UIImage+PDF.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6685B1F1449C642006A3A42 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1C1449C642006A3A42 /* UIView+Image.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A6685B3B1449CC1C006A3A42 /* YingYang.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A6685B3A1449CC1C006A3A42 /* YingYang.pdf */; };
 		A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */; };
 		E969166119DC7713006942BF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E969166019DC7713006942BF /* MainStoryboard.storyboard */; };
+		E9C111EB1B25A1D300412E94 /* YinYang.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E9C111EA1B25A1D300412E94 /* YinYang.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,11 +47,11 @@
 		A6685B1A1449C642006A3A42 /* UIImage+PDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDF.m"; sourceTree = "<group>"; };
 		A6685B1B1449C642006A3A42 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
 		A6685B1C1449C642006A3A42 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
-		A6685B3A1449CC1C006A3A42 /* YingYang.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = YingYang.pdf; sourceTree = "<group>"; };
 		A6CF4D5D15384D12000AA6BB /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		A6CF4D6115384D68000AA6BB /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		E969166019DC7713006942BF /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E9C111EA1B25A1D300412E94 /* YinYang.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = YinYang.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A6685B3A1449CC1C006A3A42 /* YingYang.pdf */,
+				E9C111EA1B25A1D300412E94 /* YinYang.pdf */,
 				2899E5210DE3E06400AC0155 /* UIImage_PDF_exampleViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* UIImage_PDF_example-Info.plist */,
@@ -210,9 +210,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				E9C111EB1B25A1D300412E94 /* YinYang.pdf in Resources */,
 				E969166119DC7713006942BF /* MainStoryboard.storyboard in Resources */,
 				2899E5220DE3E06400AC0155 /* UIImage_PDF_exampleViewController.xib in Resources */,
-				A6685B3B1449CC1C006A3A42 /* YingYang.pdf in Resources */,
 				A6CF4D6215384D68000AA6BB /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

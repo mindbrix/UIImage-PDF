@@ -52,7 +52,7 @@
 		 */
 		CGFloat imageWidth = ceilf( 22 * sqrtf( i + 1 ));
 		CGSize imageSize = CGSizeMake( imageWidth, imageWidth );
-        UIImage *image = [ UIImage imageWithPDFNamed:@"YingYang.pdf" atSize:imageSize ];
+        UIImage *image = [ UIImage imageWithPDFNamed:@"YinYang.pdf" atSize:imageSize ];
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, imageY, imageSize.width, imageSize.height)];
         imageView.image = image;
