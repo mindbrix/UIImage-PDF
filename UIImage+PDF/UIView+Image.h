@@ -10,7 +10,8 @@
 
 @interface UIView( Image )
 
--(UIImage *) image;
+@property (nonatomic) UIImage *image;
+
 -(void) savePNG:(NSString *)filePath;
 -(void) saveJPEG:(NSString *)filePath :(float)quality;
 

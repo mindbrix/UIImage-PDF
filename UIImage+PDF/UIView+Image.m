@@ -28,7 +28,7 @@
 	return image;
 }
 
-
+- (void)setImage:(UIImage *)image {}
 
 -(void) savePNG:(NSString *)filePath
 {
