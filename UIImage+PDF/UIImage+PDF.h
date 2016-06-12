@@ -17,6 +17,9 @@
 +(void)setShouldCacheOnDisk:(BOOL)shouldCache; // Default = YES
 +(void)setShouldCacheInMemory:(BOOL)shouldCache; // Default = NO
 
++(void)cleanDiskCache;
++(void)cleanMemoryCache;
+
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
 +(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
 

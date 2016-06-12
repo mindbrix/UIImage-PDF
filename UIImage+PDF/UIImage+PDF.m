@@ -118,6 +118,15 @@ static BOOL _shouldCacheOnDisk = YES;
     return cacheFilename;
 }
 
++(void)cleanDiskCache {
+    NSString *cachesDirectory = [ NSSearchPathForDirectoriesInDomains( NSCachesDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ];
+    NSString *cacheDirectory = [ NSString stringWithFormat:@"%@/__PDF_CACHE__", cachesDirectory ];
+    [[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:NULL];
+}
+
++(void)cleanMemoryCache {
+    [_imagesCache removeAllObjects];
+}
 
 #pragma mark - Resource name
 
