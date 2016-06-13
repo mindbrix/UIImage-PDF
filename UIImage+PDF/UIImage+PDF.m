@@ -118,6 +118,15 @@ static BOOL _shouldCacheOnDisk = YES;
     return cacheFilename;
 }
 
++(void)cleanDiskCache {
+    NSString *cachesDirectory = [ NSSearchPathForDirectoriesInDomains( NSCachesDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ];
+    NSString *cacheDirectory = [ NSString stringWithFormat:@"%@/__PDF_CACHE__", cachesDirectory ];
+    [[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:NULL];
+}
+
++(void)cleanMemoryCache {
+    [_imagesCache removeAllObjects];
+}
 
 #pragma mark - Resource name
 
@@ -159,6 +168,11 @@ static BOOL _shouldCacheOnDisk = YES;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size
 {
     return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size ];
+}
+
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName formBundle:(NSBundle *)bundle fitSize:(CGSize)size
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName formBundle:bundle] fitSize:size ];
 }
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(NSUInteger)page

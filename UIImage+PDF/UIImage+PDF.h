@@ -17,6 +17,9 @@
 +(void)setShouldCacheOnDisk:(BOOL)shouldCache; // Default = YES
 +(void)setShouldCacheInMemory:(BOOL)shouldCache; // Default = NO
 
++(void)cleanDiskCache;
++(void)cleanMemoryCache;
+
 +(UIImage *) imageOrPDFNamed:(NSString *)resourceName; 
 +(UIImage *) imageOrPDFWithContentsOfFile:(NSString *)path;
 
@@ -32,6 +35,7 @@
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size atPage:(NSUInteger)page;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size;
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName formBundle:(NSBundle *)bundle fitSize:(CGSize)size
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(NSUInteger)page;
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName;

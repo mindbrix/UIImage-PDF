@@ -145,6 +145,19 @@
     }
 }
 
++(NSURL *)resourceURLForName:(NSString *)resourceName formBundle:(NSBundle *)bundle
+{
+    NSString *path = [bundle pathForResource:resourceName ofType:nil ];
+    if( path == nil )
+    {
+        return nil;
+    }
+    else
+    {
+        return ( resourceName ) ? [ NSURL fileURLWithPath:path] : nil;
+    }
+}
+
 
 +(void)renderIntoContext:(CGContextRef)ctx url:(NSURL *)resourceURL data:(NSData *)resourceData size:(CGSize)size page:(NSUInteger)page preserveAspectRatio:(BOOL)preserveAspectRatio
 {
