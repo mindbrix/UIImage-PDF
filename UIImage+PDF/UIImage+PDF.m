@@ -170,6 +170,11 @@ static BOOL _shouldCacheOnDisk = YES;
     return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size ];
 }
 
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName formBundle:(NSBundle *)bundle fitSize:(CGSize)size
+{
+    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName formBundle:bundle] fitSize:size ];
+}
+
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(NSUInteger)page
 {
     return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atPage:page ];

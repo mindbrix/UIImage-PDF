@@ -35,6 +35,7 @@
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size atPage:(NSUInteger)page;
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size;
++(UIImage *) imageWithPDFNamed:(NSString *)resourceName formBundle:(NSBundle *)bundle fitSize:(CGSize)size
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(NSUInteger)page;
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName;
