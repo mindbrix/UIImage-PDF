@@ -193,7 +193,7 @@ static BOOL _shouldCacheOnDisk = YES;
     
     CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
-    CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
+    CGSize size = CGSizeMake( width, (CGFloat) ceil( width / aspectRatio ));
     
     return [ UIImage imageWithPDFData:data atSize:size atPage:page ];
 }
@@ -210,7 +210,7 @@ static BOOL _shouldCacheOnDisk = YES;
     
     CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
-    CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
+    CGSize size = CGSizeMake( (CGFloat) ceil( height * aspectRatio ), height );
     
     return [ UIImage imageWithPDFData:data atSize:size atPage:page ];
 }
@@ -251,7 +251,7 @@ static BOOL _shouldCacheOnDisk = YES;
     else
     {
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef ctx = CGBitmapContextCreate(NULL, size.width * screenScale, size.height * screenScale, 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+        CGContextRef ctx = CGBitmapContextCreate(NULL, (size_t)(size.width * screenScale), (size_t)(size.height * screenScale), 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
         CGContextScaleCTM(ctx, screenScale, screenScale);
         
         [PDFView renderIntoContext:ctx url:nil data:data size:size page:page preserveAspectRatio:preserveAspectRatio];
@@ -305,7 +305,7 @@ static BOOL _shouldCacheOnDisk = YES;
     else 
     {
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef ctx = CGBitmapContextCreate(NULL, size.width * screenScale, size.height * screenScale, 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+        CGContextRef ctx = CGBitmapContextCreate(NULL, (size_t)(size.width * screenScale), (size_t)(size.height * screenScale), 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
         CGContextScaleCTM(ctx, screenScale, screenScale);
         
         [PDFView renderIntoContext:ctx url:URL data:nil size:size page:page preserveAspectRatio:preserveAspectRatio];
@@ -353,7 +353,7 @@ static BOOL _shouldCacheOnDisk = YES;
     CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
-    CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
+    CGSize size = CGSizeMake( width, (CGFloat) ceil( width / aspectRatio ));
     
     return [ UIImage imageWithPDFURL:URL atSize:size atPage:page ];
 }
@@ -372,7 +372,7 @@ static BOOL _shouldCacheOnDisk = YES;
     CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
-    CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
+    CGSize size = CGSizeMake( (CGFloat) ceil( height * aspectRatio ), height );
     
     return [ UIImage imageWithPDFURL:URL atSize:size atPage:page ];
 }
