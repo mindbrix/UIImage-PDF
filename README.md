@@ -34,7 +34,7 @@ An example project is included in this repository. The important code is in `vie
 ARC
 ---
 
-_**If your project doesn't use ARC**: you must add the `-fobjc-arc` compiler flag to `NSData+MD5.m`, `NSString+MD5.m`, `PDFView.m`, `UIImage+PDF.m` and `UIView+Image.m` in Target Settings ==> Build Phases ==> Compile Sources._
+_**If your project doesn't use ARC**: you must add the `-fobjc-arc` compiler flag to `NSData+MD5.m`, `NSString+MD5.m`, `NTBPDFView.m`, `UIImage+PDF.m` and `UIView+Image.m` in Target Settings ==> Build Phases ==> Compile Sources._
 
 
 Disk Cacheing 
