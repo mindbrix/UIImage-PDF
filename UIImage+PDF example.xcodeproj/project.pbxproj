@@ -16,7 +16,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* UIImage_PDF_exampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* UIImage_PDF_exampleViewController.m */; };
 		A60041BF1779A5C500128861 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = A60041BE1779A5C500128861 /* NSData+MD5.m */; };
-		A6685B1D1449C642006A3A42 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B181449C642006A3A42 /* PDFView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A6685B1D1449C642006A3A42 /* NTBPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B181449C642006A3A42 /* NTBPDFView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6685B1E1449C642006A3A42 /* UIImage+PDF.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1A1449C642006A3A42 /* UIImage+PDF.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6685B1F1449C642006A3A42 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = A6685B1C1449C642006A3A42 /* UIView+Image.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -41,8 +41,8 @@
 		8D1107310486CEB800E47090 /* UIImage_PDF_example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UIImage_PDF_example-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A60041BD1779A5C500128861 /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		A60041BE1779A5C500128861 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
-		A6685B171449C642006A3A42 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
-		A6685B181449C642006A3A42 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		A6685B171449C642006A3A42 /* NTBPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTBPDFView.h; sourceTree = "<group>"; };
+		A6685B181449C642006A3A42 /* NTBPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTBPDFView.m; sourceTree = "<group>"; };
 		A6685B191449C642006A3A42 /* UIImage+PDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PDF.h"; sourceTree = "<group>"; };
 		A6685B1A1449C642006A3A42 /* UIImage+PDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PDF.m"; sourceTree = "<group>"; };
 		A6685B1B1449C642006A3A42 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
@@ -139,8 +139,8 @@
 				A60041BE1779A5C500128861 /* NSData+MD5.m */,
 				A6CF4D5D15384D12000AA6BB /* NSString+MD5.h */,
 				A6CF4D5E15384D12000AA6BB /* NSString+MD5.m */,
-				A6685B171449C642006A3A42 /* PDFView.h */,
-				A6685B181449C642006A3A42 /* PDFView.m */,
+				A6685B171449C642006A3A42 /* NTBPDFView.h */,
+				A6685B181449C642006A3A42 /* NTBPDFView.m */,
 				A6685B191449C642006A3A42 /* UIImage+PDF.h */,
 				A6685B1A1449C642006A3A42 /* UIImage+PDF.m */,
 				A6685B1B1449C642006A3A42 /* UIView+Image.h */,
@@ -227,7 +227,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* UIImage_PDF_exampleAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* UIImage_PDF_exampleViewController.m in Sources */,
-				A6685B1D1449C642006A3A42 /* PDFView.m in Sources */,
+				A6685B1D1449C642006A3A42 /* NTBPDFView.m in Sources */,
 				A6685B1E1449C642006A3A42 /* UIImage+PDF.m in Sources */,
 				A6685B1F1449C642006A3A42 /* UIView+Image.m in Sources */,
 				A6CF4D5F15384D12000AA6BB /* NSString+MD5.m in Sources */,

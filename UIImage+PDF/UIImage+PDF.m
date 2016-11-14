@@ -123,52 +123,52 @@ static BOOL _shouldCacheOnDisk = YES;
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size atPage:(NSUInteger)page
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atSize:size atPage:page ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atSize:size atPage:page ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atSize:(CGSize)size
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atSize:size ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atSize:size ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width atPage:(NSUInteger)page
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atWidth:width atPage:page ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atWidth:width atPage:page ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atWidth:(CGFloat)width
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atWidth:width ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atWidth:width ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height atPage:(NSUInteger)page
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atHeight:height atPage:page ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atHeight:height atPage:page ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName atHeight:(CGFloat)height
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atHeight:height ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atHeight:height ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size atPage:(NSUInteger)page
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size atPage:page ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName] fitSize:size atPage:page ];
 }
 
 +(UIImage *) imageWithPDFNamed:(NSString *)resourceName fitSize:(CGSize)size
 {
-    return [ self imageWithPDFURL:[ PDFView resourceURLForName:resourceName] fitSize:size ];
+    return [ self imageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName] fitSize:size ];
 }
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName atPage:(NSUInteger)page
 {
-    return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ] atPage:page ];
+    return [ self originalSizeImageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ] atPage:page ];
 }
 
 +(UIImage *) originalSizeImageWithPDFNamed:(NSString *)resourceName
 {
-    return [ self originalSizeImageWithPDFURL:[ PDFView resourceURLForName:resourceName ]];
+    return [ self originalSizeImageWithPDFURL:[ NTBPDFView resourceURLForName:resourceName ]];
 }
 
 
@@ -176,7 +176,7 @@ static BOOL _shouldCacheOnDisk = YES;
 
 +(UIImage *) originalSizeImageWithPDFData:(NSData *)data
 {
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:1 ];
+    CGRect mediaRect = [ NTBPDFView mediaRectForData:data atPage:1 ];
 
     return [ UIImage imageWithPDFData:data atSize:mediaRect.size atPage:1 ];
 }
@@ -191,7 +191,7 @@ static BOOL _shouldCacheOnDisk = YES;
     if ( data == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
+    CGRect mediaRect = [ NTBPDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
     
@@ -208,7 +208,7 @@ static BOOL _shouldCacheOnDisk = YES;
     if ( data == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForData:data atPage:page ];
+    CGRect mediaRect = [ NTBPDFView mediaRectForData:data atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
     
@@ -254,7 +254,7 @@ static BOOL _shouldCacheOnDisk = YES;
         CGContextRef ctx = CGBitmapContextCreate(NULL, size.width * screenScale, size.height * screenScale, 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
         CGContextScaleCTM(ctx, screenScale, screenScale);
         
-        [PDFView renderIntoContext:ctx url:nil data:data size:size page:page preserveAspectRatio:preserveAspectRatio];
+        [NTBPDFView renderIntoContext:ctx url:nil data:data size:size page:page preserveAspectRatio:preserveAspectRatio];
         CGImageRef image = CGBitmapContextCreateImage(ctx);
         pdfImage = [[UIImage alloc] initWithCGImage:image scale:screenScale orientation:UIImageOrientationUp];
         
@@ -308,7 +308,7 @@ static BOOL _shouldCacheOnDisk = YES;
         CGContextRef ctx = CGBitmapContextCreate(NULL, size.width * screenScale, size.height * screenScale, 8, 0, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
         CGContextScaleCTM(ctx, screenScale, screenScale);
         
-        [PDFView renderIntoContext:ctx url:URL data:nil size:size page:page preserveAspectRatio:preserveAspectRatio];
+        [NTBPDFView renderIntoContext:ctx url:URL data:nil size:size page:page preserveAspectRatio:preserveAspectRatio];
         CGImageRef image = CGBitmapContextCreateImage(ctx);
         pdfImage = [[UIImage alloc] initWithCGImage:image scale:screenScale orientation:UIImageOrientationUp];
         
@@ -350,7 +350,7 @@ static BOOL _shouldCacheOnDisk = YES;
 
 +(UIImage *) imageWithPDFURL:(NSURL *)URL atWidth:(CGFloat)width atPage:(NSUInteger)page
 {
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
+    CGRect mediaRect = [ NTBPDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( width, ceil( width / aspectRatio ));
@@ -369,7 +369,7 @@ static BOOL _shouldCacheOnDisk = YES;
     if ( URL == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page ];
+    CGRect mediaRect = [ NTBPDFView mediaRectForURL:URL atPage:page ];
     CGFloat aspectRatio = mediaRect.size.width / mediaRect.size.height;
     
     CGSize size = CGSizeMake( ceil( height * aspectRatio ), height );
@@ -387,7 +387,7 @@ static BOOL _shouldCacheOnDisk = YES;
     if ( URL == nil )
         return nil;
     
-    CGRect mediaRect = [ PDFView mediaRectForURL:URL atPage:page];
+    CGRect mediaRect = [ NTBPDFView mediaRectForURL:URL atPage:page];
     
     return [ UIImage imageWithPDFURL:URL atSize:mediaRect.size atPage:page preserveAspectRatio:YES ];
 }

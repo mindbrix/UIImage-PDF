@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+Image.h"
-#import "PDFView.h"
+#import "NTBPDFView.h"
 #import "NSData+MD5.h"
 #import "NSString+MD5.h"
 
