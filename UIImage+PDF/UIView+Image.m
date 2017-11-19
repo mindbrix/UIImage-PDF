@@ -10,7 +10,7 @@
 
 @implementation UIView( Image )
 
--(UIImage *)image
+-(UIImage *)renderedImage
 {
 	if( [ self.layer respondsToSelector:@selector(setShouldRasterize:)])
 	{
@@ -32,13 +32,13 @@
 
 -(void) savePNG:(NSString *)filePath
 {
-	[ UIImagePNGRepresentation(self.image) writeToFile:filePath atomically:NO ];
+	[ UIImagePNGRepresentation(self.renderedImage) writeToFile:filePath atomically:NO ];
 }
 
 
 -(void) saveJPEG:(NSString *)filePath :(float)quality
 {
-	[ UIImageJPEGRepresentation(self.image, quality) writeToFile:filePath atomically:NO ];
+	[ UIImageJPEGRepresentation(self.renderedImage, quality) writeToFile:filePath atomically:NO ];
 }
 
 @end
