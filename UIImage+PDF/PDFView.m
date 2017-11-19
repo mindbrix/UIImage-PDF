@@ -169,7 +169,15 @@
 		CGPDFPageRef page1 = CGPDFDocumentGetPage( pdf, page );
         
         CGRect destRect = CGRectMake(0, 0, size.width, size.height);
+        
+        CGRect smallPageRect = CGPDFPageGetBoxRect(page1, kCGPDFCropBox);
+        CGFloat pdfScale = size.width/smallPageRect.size.width;
         CGAffineTransform drawingTransform = CGPDFPageGetDrawingTransform(page1, kCGPDFCropBox, destRect, 0, preserveAspectRatio);
+        if (pdfScale > 1) {
+            drawingTransform = CGAffineTransformScale(drawingTransform, pdfScale, pdfScale);
+            drawingTransform.tx = 0;
+            drawingTransform.ty = 0;
+        }
         CGContextConcatCTM(ctx, drawingTransform);
                 
 		CGContextDrawPDFPage( ctx, page1 );
