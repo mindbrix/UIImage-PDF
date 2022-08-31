@@ -4,12 +4,14 @@ UIImage+PDF
 `UIImage+PDF` provides a `UIImage` class category method to render a `UIImage` from any PDF stored in the application bundle. The motivation for this was to enable the easy use of scaleable vector assets in `iOS` apps.
 
 
+Swift Package Manager
+---------------------
+
+Add a Swift Package reference to https://github.com/chbeer/UIImage-PDF.git (1.2.0 and higher)
+
+
 Usage
 -----
-
-Add the sources files in the `UIImage+PDF` sub folder to your project. Use the following line to import the necessary methods.
-
-	#import "UIImage+PDF.h"
 	
 Then simply call one of the `UIImage` class methods as shown here:
 
@@ -22,6 +24,10 @@ Then simply call one of the `UIImage` class methods as shown here:
 	UIImage *img = [ UIImage imageWithPDFURL:url atSize:CGSizeMake( 60, 60 ) atPage:1 ];
 	
 	UIImage *img = [ UIImage imageWithPDFData:data atSize:CGSizeMake( 60, 60 ) atPage:1 ];
+ 
+ Swift:
+ 
+    let img = UIImage(pdfurl: url, at: CGSize(width: 60, height: 60))
 
 
 The `fitSize:`, `atWidth:` and `atHeight:` methods are particularly useful as they preserve the aspect ratio of the source PDF.
