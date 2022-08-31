@@ -1,5 +1,5 @@
 //
-//  UIImage_PDF_exampleViewController.h
+//  ViewController.h
 //  UIImage+PDF example
 //
 //  Created by Nigel Barber on 15/10/2011.
@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UIImage+PDF.h"
+@import UIImage_PDF;
 
 
-@interface UIImage_PDF_exampleViewController : UIViewController {
+@interface ViewController : UIViewController {
 
 }
 

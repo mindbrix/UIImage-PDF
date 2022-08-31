@@ -28,7 +28,7 @@ The `fitSize:`, `atWidth:` and `atHeight:` methods are particularly useful as th
 
 For a full API list consult the header file.
 
-An example project is included in this repository. The important code is in `viewDidLoad:` in `UIImage_PDF_exampleViewController.m`.
+An example project is included in this repository. The important code is in `viewDidLoad:` in `ViewController.m`.
 
 
 ARC

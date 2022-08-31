@@ -1,20 +1,20 @@
 //
-//  UIImage_PDF_exampleViewController.m
+//  ViewController.m
 //  UIImage+PDF example
 //
 //  Created by Nigel Barber on 15/10/2011.
 //  Copyright 2011 Mindbrix. All rights reserved.
 //
 
-#import "UIImage_PDF_exampleViewController.h"
+#import "ViewController.h"
 
-@interface UIImage_PDF_exampleViewController ()
+@interface ViewController ()
 
 @property (nonatomic, strong) NSMutableArray *collection;
 
 @end
 
-@implementation UIImage_PDF_exampleViewController
+@implementation ViewController
 
 
 
@@ -75,11 +75,6 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 }
 
 

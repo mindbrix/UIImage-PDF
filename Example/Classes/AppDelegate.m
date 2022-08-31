@@ -1,15 +1,15 @@
 //
-//  UIImage_PDF_exampleAppDelegate.m
+//  AppDelegate.m
 //  UIImage+PDF example
 //
 //  Created by Nigel Barber on 15/10/2011.
 //  Copyright 2011 Mindbrix. All rights reserved.
 //
 
-#import "UIImage_PDF_exampleAppDelegate.h"
-#import "UIImage_PDF_exampleViewController.h"
+#import "AppDelegate.h"
+#import "ViewController.h"
 
-@implementation UIImage_PDF_exampleAppDelegate
+@implementation AppDelegate
 
 @synthesize window;
 @synthesize viewController;
