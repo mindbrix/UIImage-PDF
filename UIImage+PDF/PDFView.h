@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define PDFView XXPDFView
 
 @interface PDFView : UIView 
 {
